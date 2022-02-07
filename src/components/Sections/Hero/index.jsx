@@ -3,7 +3,7 @@ import React from "react";
 function Hero() {
   return (
     <div
-      className="relative grid min-h-[70vh] items-center justify-center rounded-md"
+      className="relative grid min-h-[70vh] items-center justify-center rounded-md lg:h-[90vh]"
       style={{
         objectFit: "cover",
         backgroundSize: "cover",
@@ -24,13 +24,13 @@ function Hero() {
           <input
             type="search"
             placeholder="Search"
-            className="mb-4 w-[100%]  rounded-md px-4 py-2 ring-2 ring-transparent focus:outline-none focus:ring-2 focus:ring-slate-900 md:w-[50%]"
+            className="mb-4 w-[100%]  rounded-md px-4 py-2 ring-2 ring-transparent focus:outline-none focus:ring-2 focus:ring-zinc-900 md:w-[50%]"
           />
           <button
             onClick={(e) => {
               e.preventDefault();
             }}
-            className="rounded-md border-x border-y border-solid border-slate-900 bg-slate-900 px-4 py-2 text-slate-50 transition duration-200 ease-in-out hover:-translate-y-1 hover:drop-shadow-md active:bg-gray-600 md:ml-4"
+            className="rounded-md border-x border-y border-solid border-zinc-900 bg-zinc-900 px-4 py-2 text-slate-50 transition duration-200 ease-in-out hover:-translate-y-1 hover:drop-shadow-md active:bg-gray-600 md:ml-4"
           >
             Search
           </button>

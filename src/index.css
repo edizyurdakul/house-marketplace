@@ -99,5 +99,5 @@
 }
 
 .arrow--disabled {
-  fill: gray;
+  fill: gray !important;
 }

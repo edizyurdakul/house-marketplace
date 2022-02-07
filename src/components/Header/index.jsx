@@ -74,7 +74,7 @@ const MobileNav = () => {
   return (
     <div>
       <Menu as="div" className="relative">
-        <Menu.Button className=" rounded-md bg-gray-900 p-2 transition duration-200 ease-in-out hover:-translate-y-[2px] hover:drop-shadow-md">
+        <Menu.Button className=" rounded-md bg-zinc-900 p-2 transition duration-200 ease-in-out hover:-translate-y-[2px] hover:drop-shadow-md">
           <HiOutlineMenu className="h-6 w-6 text-slate-50" />
         </Menu.Button>
         <div className="relative z-10">
@@ -86,11 +86,11 @@ const MobileNav = () => {
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-95 opacity-0"
           >
-            <Menu.Items className="absolute right-0 z-10 mt-1 flex w-48 origin-top-right flex-col rounded-md bg-gray-900 p-1 text-sm text-slate-50">
+            <Menu.Items className="absolute right-0 z-10 mt-1 flex w-48 origin-top-right flex-col rounded-md bg-zinc-900 p-1 text-sm text-slate-50">
               <Menu.Item>
                 {({ active }) => (
                   <a
-                    className={`${active && "rounded-md bg-slate-700"} p-2`}
+                    className={`${active && "rounded-md bg-zinc-700"} p-2`}
                     href="/"
                   >
                     Login
@@ -100,7 +100,7 @@ const MobileNav = () => {
               <Menu.Item>
                 {({ active }) => (
                   <a
-                    className={`${active && "rounded-md bg-slate-700"} p-2`}
+                    className={`${active && "rounded-md bg-zinc-700"} p-2`}
                     href="/"
                   >
                     Register
@@ -110,7 +110,7 @@ const MobileNav = () => {
               <Menu.Item>
                 {({ active }) => (
                   <a
-                    className={`${active && "rounded-md bg-slate-700"} p-2`}
+                    className={`${active && "rounded-md bg-zinc-700"} p-2`}
                     href="/"
                   >
                     About Us
@@ -120,7 +120,7 @@ const MobileNav = () => {
               <Menu.Item>
                 {({ active }) => (
                   <a
-                    className={`${active && "rounded-md bg-slate-700"} p-2`}
+                    className={`${active && "rounded-md bg-zinc-700"} p-2`}
                     href="/"
                   >
                     Careers
