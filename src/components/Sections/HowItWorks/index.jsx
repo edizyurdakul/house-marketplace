@@ -8,10 +8,10 @@ import {
 function HowItWorks() {
   return (
     <section className="relative py-8">
-      <div className="flex flex-col rounded-md bg-zinc-900 p-8 text-slate-50 sm:p-12">
+      <div className="flex flex-col rounded-md bg-zinc-900 p-8 text-zinc-50 sm:p-12">
         <div className="mb-12 md:text-center">
           <p className="text-sm font-semibold">FINDING YOUR NEW HOME</p>
-          <h2 className="my-2 text-3xl font-semibold">How It Works</h2>
+          <h2 className="my-2 text-4xl font-semibold">How It Works</h2>
           <p className="mx-auto md:w-[50%]">
             Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam
             voluptatum cupiditate veritatis in accusamus quisquam.
