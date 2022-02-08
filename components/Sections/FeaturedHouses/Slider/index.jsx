@@ -5,7 +5,11 @@ import Card from "../Card";
 
 // This function is to fix sliders per view being greater than 1 causing currentSlider useState being incorrectly incremented due to more slides are on the view
 function getWindowDimensions() {
-  const { innerWidth: width, innerHeight: height } = window;
+  // fix ssr window not defined
+  const hasWindow = typeof window !== "undefined";
+
+  const width = hasWindow ? window.innerWidth : null;
+  const height = hasWindow ? window.innerHeight : null;
   return {
     width,
     height,

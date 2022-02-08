@@ -13,7 +13,7 @@ function index() {
     <div>
       <Header />
       <Hero />
-      {/* <FeaturedHouses /> */}
+      <FeaturedHouses />
       <HowItWorks />
       <ForRent />
       <CallToAction />
