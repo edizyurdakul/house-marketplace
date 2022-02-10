@@ -1,22 +1,20 @@
-import Header from "./components/Header";
-import {
-  Hero,
-  FeaturedHouses,
-  HowItWorks,
-  ForRent,
-  CallToAction,
-} from "./components/Sections";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Home, Listings, ForgotPass, Profile, SignIn, SignUp } from "./pages";
 
 function App() {
   return (
-    <div>
-      <Header />
-      <Hero />
-      <FeaturedHouses />
-      <HowItWorks />
-      <ForRent />
-      <CallToAction />
-    </div>
+    <>
+      <Routes>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/listings" element={<Listings />} />
+          <Route path="/profile" element={<SignIn />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/forgot" element={<ForgotPass />} />
+        </Routes>
+      </Routes>
+    </>
   );
 }
 
