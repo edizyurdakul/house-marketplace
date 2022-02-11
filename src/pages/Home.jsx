@@ -1,4 +1,3 @@
-import Header from "./components/Header";
 import {
   Hero,
   FeaturedHouses,
@@ -6,17 +5,21 @@ import {
   ForRent,
   CallToAction,
 } from "../components/Sections";
+import { motion } from "framer-motion";
 
 function Home() {
   return (
-    <div>
-      <Header />
+    <motion.div
+      exit={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+    >
       <Hero />
       <FeaturedHouses />
       <HowItWorks />
       <ForRent />
       <CallToAction />
-    </div>
+    </motion.div>
   );
 }
 

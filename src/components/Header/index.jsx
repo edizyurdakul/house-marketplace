@@ -1,5 +1,6 @@
 import { Menu, Transition } from "@headlessui/react";
 import { HiOutlineMenu } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -13,9 +14,9 @@ function Navbar() {
       </a>
       <header className="flex items-center justify-between py-4">
         <div className="flex items-center font-semibold">
-          <a
+          <Link
             className="flex items-center transition duration-200 ease-in-out  hover:-translate-y-1 hover:drop-shadow-md"
-            href="/"
+            to="/"
           >
             <svg
               width="30"
@@ -31,7 +32,7 @@ function Navbar() {
             </svg>
 
             <span className="text-lg">NewHome</span>
-          </a>
+          </Link>
         </div>
         <nav className="hidden md:block">
           <DesktopNav />
@@ -49,21 +50,27 @@ const DesktopNav = () => {
   return (
     <ul className="inline-flex items-center ">
       <li className="mr-8 hover:underline">
-        <a href="/">About Us</a>
+        <Link to="/listings">Listings</Link>
       </li>
       <li className="mr-8 hover:underline">
-        <a href="/">Careers</a>
+        <Link to="/about">About Us</Link>
+      </li>
+      <li className="mr-8 hover:underline">
+        <Link to="/careers">Careers</Link>
       </li>
       <li>
-        <button className="mr-4 rounded-md border-x border-y border-solid border-slate-200 px-4 py-2 transition duration-200 ease-in-out  hover:-translate-y-1 hover:drop-shadow-md">
-          Sign In
-        </button>
+        <Link to="/signin">
+          <button className="mr-4 rounded-md border-x border-y border-solid border-slate-200 px-4 py-2 transition duration-200 ease-in-out  hover:-translate-y-1 hover:drop-shadow-md">
+            Sign In
+          </button>
+        </Link>
       </li>
-
       <li>
-        <button className="rounded-md border-x border-y border-solid border-slate-900 bg-slate-900 px-4 py-2 text-slate-50 transition duration-200 ease-in-out hover:-translate-y-1 hover:drop-shadow-md">
-          Sign Up
-        </button>
+        <Link to="/signup">
+          <button className="rounded-md border-x border-y border-solid border-slate-900 bg-slate-900 px-4 py-2 text-slate-50 transition duration-200 ease-in-out hover:-translate-y-1 hover:drop-shadow-md">
+            Sign Up
+          </button>
+        </Link>
       </li>
     </ul>
   );

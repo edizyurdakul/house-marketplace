@@ -1,15 +1,15 @@
 import { motion } from "framer-motion";
 
-function ForgotPassword() {
+function About() {
   return (
     <motion.div
       exit={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
     >
-      Forgot Password
+      About
     </motion.div>
   );
 }
 
-export default ForgotPassword;
+export default About;
