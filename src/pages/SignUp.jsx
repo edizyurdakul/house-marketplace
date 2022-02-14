@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import OAuth from "../components/OAuth";
 import { motion } from "framer-motion";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase.config";
 
 function SignUp() {
@@ -40,9 +43,22 @@ function SignUp() {
         displayName: name,
       });
 
+      const formDataCopy = { ...formData };
+      delete formDataCopy.password;
+      formDataCopy.timestamp = serverTimestamp();
+      await setDoc(doc(db, "users", user.uid), formDataCopy);
+
       navigate("/");
     } catch (error) {
-      console.log(error);
+      toast.error("Something wrong", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
@@ -100,17 +116,14 @@ function SignUp() {
               </p>
               <Link to="/forgot">Forgot Password</Link>
             </div>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-              }}
-              className="w-fit rounded-md border-x border-y border-solid border-zinc-50 bg-zinc-50 px-4 py-2 text-zinc-900 transition duration-200 ease-in-out hover:-translate-y-1 hover:drop-shadow-md active:bg-gray-600"
-            >
-              Sign In
+            <button className="w-fit rounded-md border-x border-y border-solid border-zinc-50 bg-zinc-50 px-4 py-2 text-zinc-900 transition duration-200 ease-in-out hover:-translate-y-1 hover:drop-shadow-md active:bg-gray-600">
+              Sign Up
             </button>
           </form>
           <p className="mt-8 mb-2 text-center">Sign up with</p>
-          <div className="my-8">Google Auth TBD</div>
+          <div className="my-4">
+            <OAuth />
+          </div>
           <Link className="my-4" to="/signin">
             Already have an account? Sign in instead
           </Link>

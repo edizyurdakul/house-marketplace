@@ -33,7 +33,7 @@ function Arrow(props) {
   );
 }
 
-function Slider({ data }) {
+function Slider({ listings, id }) {
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   );
@@ -103,10 +103,10 @@ function Slider({ data }) {
   return (
     <div>
       <div ref={sliderRef} className="keen-slider">
-        {data.map((house, index) => {
+        {listings.map((listing, index) => {
           return (
             <div key={index} className="keen-slider__slide">
-              <Card data={house} />
+              <Card data={listing.data} />
             </div>
           );
         })}

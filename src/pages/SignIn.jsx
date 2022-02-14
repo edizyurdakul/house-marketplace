@@ -1,6 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { toast } from "react-toastify";
 import { motion } from "framer-motion";
+import OAuth from "../components/OAuth";
 
 function SignInPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -9,6 +12,8 @@ function SignInPage() {
     password: "",
   });
 
+  const navigate = useNavigate();
+
   const { email, password } = formData;
 
   const onChange = (e) => {
@@ -16,6 +21,32 @@ function SignInPage() {
       ...prev,
       [e.target.id]: e.target.value,
     }));
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const auth = getAuth();
+      const userCredentials = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      if (userCredentials.user) {
+        navigate("/");
+      }
+    } catch (error) {
+      toast.error("Bad user credentials", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 
   return (
@@ -33,7 +64,24 @@ function SignInPage() {
             Everything you need about finding your place to live will be here,
             where it will be easier for you
           </p>
-          <form className="flex flex-col text-left md:items-center">
+          <p className="text-purple-400">Demo account details:</p>
+          <p>
+            <span className="select-none">email: </span>
+            <span className="selection:bg-purple-500 selection:text-white">
+              demo_account@gmail.com
+            </span>
+          </p>
+          <p>
+            <span className="select-none">pass: </span>
+            <span className="selection:bg-purple-500 selection:text-white">
+              demoaccount
+            </span>
+          </p>
+          <form
+            onSubmit={onSubmit}
+            className="flex flex-col text-left md:items-center"
+          >
+            <label className="mt-4">email</label>
             <input
               onChange={onChange}
               type="email"
@@ -60,17 +108,14 @@ function SignInPage() {
               </p>
               <Link to="/forgot">Forgot Password</Link>
             </div>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-              }}
-              className="w-fit rounded-md border-x border-y border-solid border-zinc-50 bg-zinc-50 px-4 py-2 text-zinc-900 transition duration-200 ease-in-out hover:-translate-y-1 hover:drop-shadow-md active:bg-gray-600"
-            >
+            <button className="w-fit rounded-md border-x border-y border-solid border-zinc-50 bg-zinc-50 px-4 py-2 text-zinc-900 transition duration-200 ease-in-out hover:-translate-y-1 hover:drop-shadow-md active:bg-gray-600">
               Sign In
             </button>
           </form>
           <p className="mt-8 mb-2 text-center">Sign In With</p>
-          <div className="my-8">Google Auth TBD</div>
+          <div className="my-4">
+            <OAuth />
+          </div>
           <Link className="my-4" to="/signup">
             Don't have an account? Sign up instead
           </Link>

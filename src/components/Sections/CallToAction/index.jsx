@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 function CallToAction() {
   return (
@@ -10,13 +10,17 @@ function CallToAction() {
             Start searching for your new home today for free.
           </p>
 
-          <button className="mr-4 rounded-md border-x border-y border-solid border-zinc-200 px-4 py-2 transition duration-200 ease-in-out  hover:-translate-y-1 hover:drop-shadow-md">
-            Explore Houses
-          </button>
+          <Link to="/listings">
+            <button className="mr-4 rounded-md border-x border-y border-solid border-zinc-200 px-4 py-2 transition duration-200 ease-in-out  hover:-translate-y-1 hover:drop-shadow-md">
+              Explore Houses
+            </button>
+          </Link>
 
-          <button className="rounded-md border-x border-y border-solid border-zinc-900 bg-zinc-700 px-4 py-2 text-zinc-50 transition duration-200 ease-in-out hover:-translate-y-1 hover:drop-shadow-md">
-            Sign Up
-          </button>
+          <Link to="/signup">
+            <button className="rounded-md border-x border-y border-solid border-zinc-900 bg-zinc-700 px-4 py-2 text-zinc-50 transition duration-200 ease-in-out hover:-translate-y-1 hover:drop-shadow-md">
+              Sign Up
+            </button>
+          </Link>
         </div>
       </div>
     </section>

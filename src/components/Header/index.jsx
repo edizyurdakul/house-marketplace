@@ -1,8 +1,12 @@
 import { Menu, Transition } from "@headlessui/react";
 import { HiOutlineMenu } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import { useAuthStatus } from "../../hooks/useAuthStatus";
 
 function Navbar() {
+  const { loggedIn, checkingStatus } = useAuthStatus();
+
+  // loggedIn ? <Outlet /> : <Navigate to="/signin" />;
   return (
     <>
       <a
@@ -53,10 +57,7 @@ const DesktopNav = () => {
         <Link to="/listings">Listings</Link>
       </li>
       <li className="mr-8 hover:underline">
-        <Link to="/about">About Us</Link>
-      </li>
-      <li className="mr-8 hover:underline">
-        <Link to="/careers">Careers</Link>
+        <Link to="/profile">Profile</Link>
       </li>
       <li>
         <Link to="/signin">
@@ -96,42 +97,43 @@ const MobileNav = () => {
             <Menu.Items className="absolute right-0 z-10 mt-1 flex w-48 origin-top-right flex-col rounded-md bg-zinc-900 p-1 text-sm text-slate-50">
               <Menu.Item>
                 {({ active }) => (
-                  <a
+                  <Link
+                    to="/listings"
                     className={`${active && "rounded-md bg-zinc-700"} p-2`}
-                    href="/"
+                  >
+                    Listings
+                  </Link>
+                )}
+              </Menu.Item>
+
+              <Menu.Item>
+                {({ active }) => (
+                  <Link
+                    className={`${active && "rounded-md bg-zinc-700"} p-2`}
+                    to="/profile"
+                  >
+                    Profile
+                  </Link>
+                )}
+              </Menu.Item>
+              <Menu.Item>
+                {({ active }) => (
+                  <Link
+                    to="/signin"
+                    className={`${active && "rounded-md bg-zinc-700"} p-2`}
                   >
                     Login
-                  </a>
+                  </Link>
                 )}
               </Menu.Item>
               <Menu.Item>
                 {({ active }) => (
-                  <a
+                  <Link
+                    to="/signup"
                     className={`${active && "rounded-md bg-zinc-700"} p-2`}
-                    href="/"
                   >
                     Register
-                  </a>
-                )}
-              </Menu.Item>
-              <Menu.Item>
-                {({ active }) => (
-                  <a
-                    className={`${active && "rounded-md bg-zinc-700"} p-2`}
-                    href="/"
-                  >
-                    About Us
-                  </a>
-                )}
-              </Menu.Item>
-              <Menu.Item>
-                {({ active }) => (
-                  <a
-                    className={`${active && "rounded-md bg-zinc-700"} p-2`}
-                    href="/"
-                  >
-                    Careers
-                  </a>
+                  </Link>
                 )}
               </Menu.Item>
             </Menu.Items>

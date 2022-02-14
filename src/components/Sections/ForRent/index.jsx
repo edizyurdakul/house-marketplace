@@ -92,11 +92,6 @@ function ForRent() {
         })}
       </div>
       {/* something causing overlaping but nothing important learn why grid and grid item grid item is smaller than the card */}
-      <div className="mt-10 text-center">
-        <button className="rounded-md border-x border-y border-solid border-slate-900 bg-slate-900 px-4 py-2 text-slate-50 transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-lg">
-          View More
-        </button>
-      </div>
     </section>
   );
 }
