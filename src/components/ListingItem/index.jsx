@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FaBed, FaBath, FaWifi, FaParking, FaChair } from "react-icons/fa";
 
 function ListingItem({ listing, id }) {
   return (
@@ -6,7 +7,7 @@ function ListingItem({ listing, id }) {
       <div className="relative mx-0 flex h-[100%] flex-col rounded-md ring-1 ring-zinc-200 transition duration-200 ease-in-out hover:-translate-y-[2px] hover:shadow-lg">
         <div className="relative">
           <img
-            src={listing.imageUrls[0]}
+            src={listing.imgUrls[0]}
             alt={listing.name}
             className=" h-auto w-auto rounded-md"
           />
@@ -21,6 +22,42 @@ function ListingItem({ listing, id }) {
             ${listing.price}
             {listing.type === "rent" && "/Month"}
           </p>
+          <div className="flex space-x-4">
+            <div className="mt-2 flex items-center">
+              <p className="text-sm">{listing.bedrooms}</p>
+              <FaBed className="ml-1" />
+            </div>
+            <div className="mt-2 flex items-center">
+              <p className="text-sm">{listing.bathrooms}</p>
+              <FaBath className="ml-1 text-sm" />
+            </div>
+            <div className="mt-2 flex items-center">
+              <p>
+                {listing.wifi === true ? (
+                  <>
+                    <FaWifi />
+                  </>
+                ) : (
+                  <>
+                    <FaWifi className="text-zinc-900 opacity-25" />
+                  </>
+                )}
+              </p>
+            </div>
+            <div className="mt-2 flex items-center">
+              <p>
+                {listing.furnished === true ? (
+                  <>
+                    <FaChair className="text-sm" />
+                  </>
+                ) : (
+                  <>
+                    <FaChair className="text-zinc-900 opacity-25" />
+                  </>
+                )}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </Link>

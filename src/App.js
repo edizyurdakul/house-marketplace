@@ -9,6 +9,7 @@ import {
   SignIn,
   SignUp,
   Category,
+  CreateListing,
 } from "./pages";
 import PrivateRoute from "./components/PrivateRoute";
 import { AnimatePresence } from "framer-motion";
@@ -34,6 +35,7 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgot" element={<ForgotPass />} />
+          <Route path="/create-listing" element={<CreateListing />} />
         </Routes>
       </AnimatePresence>
       <ToastContainer

@@ -40,6 +40,7 @@ function Listings() {
         const listings = [];
 
         querySnapSale.forEach((doc) => {
+          console.log(querySnapRent);
           return listings.push({
             id: doc.id,
             data: doc.data(),
@@ -70,6 +71,7 @@ function Listings() {
     };
 
     fetchListings();
+    console.log(listings);
   }, []);
   return (
     <motion.main
@@ -78,7 +80,7 @@ function Listings() {
       initial={{ opacity: 0 }}
       className="py-8"
     >
-      <h1 className="text-4xl font-semibold">Listings</h1>{" "}
+      <h1 className="text-4xl font-semibold">Listings</h1>
       {isLoading ? (
         <div className="my-8 flex justify-center">
           <Spinner />
