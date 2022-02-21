@@ -1,10 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getAuth, updateProfile } from "firebase/auth";
-import { updateDoc, doc } from "firebase/firestore";
+import {
+  updateDoc,
+  doc,
+  collection,
+  getDocs,
+  query,
+  where,
+  orderBy,
+  deleteDoc,
+} from "firebase/firestore";
 import { db } from "../firebase.config";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
+import ListingItem from "../components/ListingItem";
+import { FaBed, FaBath, FaWifi, FaParking, FaChair } from "react-icons/fa";
 
 function Profile() {
   const auth = getAuth();
@@ -13,10 +24,36 @@ function Profile() {
     email: auth.currentUser.email,
   });
   const [changeDetails, setChangeDetails] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [listings, setListings] = useState(null);
   const { name, email } = formData;
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchListings = async () => {
+      const listingsRef = collection(db, "listings");
+      const q = query(
+        listingsRef,
+        where("userRef", "==", auth.currentUser.uid),
+        orderBy("timestamp", "desc")
+      );
+
+      const querySnap = await getDocs(q);
+
+      const listings = [];
+      querySnap.forEach((doc) => {
+        return listings.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+      setListings(listings);
+      setIsLoading(false);
+    };
+
+    fetchListings();
+  }, [auth.currentUser.uid]);
 
   const onLogOut = () => {
     auth.signOut();
@@ -51,6 +88,25 @@ function Profile() {
       ...prev,
       [e.target.id]: e.target.value,
     }));
+  };
+
+  const onDelete = async (listingId) => {
+    if (window.confirm("Are you sure you want to delete this listing?")) {
+      await deleteDoc(doc(db, "listings", listingId));
+      const upDatedListings = listings.filter(
+        (listing) => listing.id !== listingId
+      );
+      setListings(upDatedListings);
+      toast.error("Deleted listing", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 
   return (
@@ -117,7 +173,109 @@ function Profile() {
         <section className="my-4 py-8">
           <h2 className="text-xl font-semibold">Your Listings</h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {/* Todo Listings */}
+            {!isLoading && listings?.length > 0 && (
+              <>
+                {listings.map((listing) => {
+                  return (
+                    <>
+                      <div className="relative mx-0 flex h-[100%] flex-col rounded-md ring-1 ring-zinc-200 transition duration-200 ease-in-out hover:-translate-y-[2px] hover:shadow-lg">
+                        <div className="relative">
+                          <Link
+                            key={listing.id}
+                            to={`/category/${listing.data.type}/${listing.id}`}
+                          >
+                            <img
+                              src={listing.data.imgUrls[0]}
+                              alt={listing.data.name}
+                              className=" h-auto w-auto rounded-md"
+                            />
+                          </Link>
+                          <p className="absolute bottom-4 left-4 rounded-lg bg-zinc-900  p-1 text-sm uppercase text-zinc-50">
+                            {listing.data.type}
+                          </p>
+                          <button
+                            onClick={() => {
+                              onDelete(listing.id);
+                            }}
+                            className="absolute bottom-4 right-4 mt-4  rounded-md bg-red-500 p-1 text-zinc-50 transition duration-200 ease-in-out  hover:-translate-y-1 hover:drop-shadow-md"
+                          >
+                            Delete Listing
+                          </button>
+                        </div>
+                        <Link
+                          key={listing.id}
+                          to={`/category/${listing.data.type}/${listing.id}`}
+                        >
+                          <div className="p-4">
+                            <h3 className=" font-medium">
+                              {listing.data.name}
+                            </h3>
+                            <p>{listing.data.location}</p>
+                            <p className="w-fit rounded-lg text-sm uppercase text-green-500">
+                              ${listing.data.price}
+                              {listing.data.type === "rent" && "/Month"}
+                            </p>
+                            <div className="flex space-x-4">
+                              <div className="mt-2 flex items-center">
+                                <p className="text-sm">
+                                  {listing.data.bedrooms}
+                                </p>
+                                <FaBed className="ml-1" />
+                              </div>
+                              <div className="mt-2 flex items-center">
+                                <p className="text-sm">
+                                  {listing.data.bathrooms}
+                                </p>
+                                <FaBath className="ml-1 text-sm" />
+                              </div>
+                              <div className="mt-2 flex items-center">
+                                <p>
+                                  {listing.data.wifi === true ? (
+                                    <>
+                                      <FaWifi />
+                                    </>
+                                  ) : (
+                                    <>
+                                      <FaWifi className="text-zinc-900 opacity-25" />
+                                    </>
+                                  )}
+                                </p>
+                              </div>
+                              <div className="mt-2 flex items-center">
+                                <p>
+                                  {listing.data.furnished === true ? (
+                                    <>
+                                      <FaChair className="text-sm" />
+                                    </>
+                                  ) : (
+                                    <>
+                                      <FaChair className="text-zinc-900 opacity-25" />
+                                    </>
+                                  )}
+                                </p>
+                              </div>
+                              <div className="mt-2 flex items-center">
+                                <p>
+                                  {listing.data.parking === true ? (
+                                    <>
+                                      <FaParking className="text-sm" />
+                                    </>
+                                  ) : (
+                                    <>
+                                      <FaParking className="text-zinc-900 opacity-25" />
+                                    </>
+                                  )}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </Link>
+                      </div>
+                    </>
+                  );
+                })}
+              </>
+            )}
           </div>
         </section>
       </main>

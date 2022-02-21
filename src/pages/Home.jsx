@@ -34,13 +34,13 @@ function Home() {
         const qSale = query(
           listingsRef,
           where("type", "==", "sale"),
-          orderBy("createdAt", "desc"),
+          orderBy("timestamp", "desc"),
           limit(10)
         );
         const qRent = query(
           listingsRef,
           where("type", "==", "rent"),
-          orderBy("createdAt", "desc"),
+          orderBy("timestamp", "desc"),
           limit(10)
         );
         const querySnapSale = await getDocs(qSale);
