@@ -38,7 +38,6 @@ function Category() {
           });
         });
         setListings(listings);
-        console.log(listings);
         setIsLoading(false);
       } catch (error) {
         toast.error("Could not fetch listings", {

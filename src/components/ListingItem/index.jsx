@@ -57,6 +57,19 @@ function ListingItem({ listing, id }) {
                 )}
               </p>
             </div>
+            <div className="mt-2 flex items-center">
+              <p>
+                {listing.parking === true ? (
+                  <>
+                    <FaParking className="text-sm" />
+                  </>
+                ) : (
+                  <>
+                    <FaParking className="text-zinc-900 opacity-25" />
+                  </>
+                )}
+              </p>
+            </div>
           </div>
         </div>
       </div>

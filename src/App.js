@@ -2,6 +2,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import {
   Home,
   Listings,
+  Listing,
   About,
   Careers,
   ForgotPass,
@@ -10,6 +11,7 @@ import {
   SignUp,
   Category,
   CreateListing,
+  Contact,
 } from "./pages";
 import PrivateRoute from "./components/PrivateRoute";
 import { AnimatePresence } from "framer-motion";
@@ -36,6 +38,11 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgot" element={<ForgotPass />} />
           <Route path="/create-listing" element={<CreateListing />} />
+          <Route
+            path="/category/:categoryName/:listingId"
+            element={<Listing />}
+          />
+          <Route path="/contact/:landlordId" element={<Contact />} />
         </Routes>
       </AnimatePresence>
       <ToastContainer

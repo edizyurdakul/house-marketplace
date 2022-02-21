@@ -1,5 +1,7 @@
 export { default as Home } from "./Home";
 export { default as Listings } from "./Listings";
+export { default as Listing } from "./Listing";
+export { default as Contact } from "./Contact";
 export { default as About } from "./About";
 export { default as Category } from "./Category";
 export { default as CreateListing } from "./CreateListing";

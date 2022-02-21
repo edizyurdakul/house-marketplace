@@ -169,6 +169,7 @@ function CreateListing() {
       createdAt: serverTimestamp(),
     };
 
+    formDataCopy.location = address;
     delete formDataCopy.images;
     delete formDataCopy.address;
     location && (formDataCopy.location = location);
@@ -307,7 +308,6 @@ function CreateListing() {
             value={address}
             required
           />
-
           <div className="mt-4 flex space-x-4">
             <div>
               <label className="mr-2">Latitude</label>

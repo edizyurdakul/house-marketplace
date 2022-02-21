@@ -40,7 +40,6 @@ function Listings() {
         const listings = [];
 
         querySnapSale.forEach((doc) => {
-          console.log(querySnapRent);
           return listings.push({
             id: doc.id,
             data: doc.data(),
@@ -71,7 +70,6 @@ function Listings() {
     };
 
     fetchListings();
-    console.log(listings);
   }, []);
   return (
     <motion.main

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Hero() {
   return (
@@ -21,21 +22,17 @@ function Hero() {
             Everything you need about finding your place to live will be here,
             where it will be easier for you
           </p>
-          <form>
-            <input
-              type="search"
-              placeholder="Search"
-              className="mb-4 w-[100%]  rounded-md px-4 py-2 ring-2 ring-transparent focus:outline-none focus:ring-2 focus:ring-zinc-900 md:w-[50%]"
-            />
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-              }}
-              className="rounded-md border-x border-y border-solid border-zinc-900 bg-zinc-900 px-4 py-2 text-slate-50 transition duration-200 ease-in-out hover:-translate-y-1 hover:drop-shadow-md active:bg-gray-600 md:ml-4"
-            >
-              Search
+          <Link to="/listings">
+            <button className="mr-4 rounded-md border-x border-y border-solid border-zinc-200 px-4 py-2 transition duration-200 ease-in-out  hover:-translate-y-1 hover:drop-shadow-md">
+              Explore Houses
             </button>
-          </form>
+          </Link>
+
+          <Link to="/signup">
+            <button className="rounded-md border-x border-y border-solid border-zinc-900 bg-zinc-900 px-4 py-2 text-zinc-50 transition duration-200 ease-in-out hover:-translate-y-1 hover:drop-shadow-md">
+              Sign Up
+            </button>
+          </Link>
         </div>
       </div>
     </section>
