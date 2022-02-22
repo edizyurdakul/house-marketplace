@@ -104,7 +104,6 @@ function Listing() {
               </div>
             </div>
           </div>
-          {console.log(listing.geolocation.lat, listing.geolocation.lng)}
           <div className="mt-8 h-[30vh]">
             <MapContainer
               center={[listing.geolocation.lat, listing.geolocation.lng]}

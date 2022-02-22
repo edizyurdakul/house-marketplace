@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import { FaBed, FaBath, FaWifi, FaParking, FaChair } from "react-icons/fa";
 
-function ListingItem({ listing, id, profile }) {
-  console.log(listing);
-
+function ListingItem({ listing, id }) {
   return (
     <Link to={`/category/${listing.type}/${id}`}>
       <div className="relative mx-0 flex h-[100%] flex-col rounded-md ring-1 ring-zinc-200 transition duration-200 ease-in-out hover:-translate-y-[2px] hover:shadow-lg">

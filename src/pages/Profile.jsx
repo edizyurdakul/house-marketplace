@@ -14,7 +14,6 @@ import { db } from "../firebase.config";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
-import ListingItem from "../components/ListingItem";
 import { FaBed, FaBath, FaWifi, FaParking, FaChair } from "react-icons/fa";
 
 function Profile() {
@@ -171,107 +170,103 @@ function Profile() {
         </section>
 
         <section className="my-4 py-8">
-          <h2 className="text-xl font-semibold">Your Listings</h2>
+          <h2 className="mb-4 text-xl font-semibold">Your Listings</h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {!isLoading && listings?.length > 0 && (
               <>
                 {listings.map((listing) => {
                   return (
-                    <>
-                      <div className="relative mx-0 flex h-[100%] flex-col rounded-md ring-1 ring-zinc-200 transition duration-200 ease-in-out hover:-translate-y-[2px] hover:shadow-lg">
-                        <div className="relative">
-                          <Link
-                            key={listing.id}
-                            to={`/category/${listing.data.type}/${listing.id}`}
-                          >
-                            <img
-                              src={listing.data.imgUrls[0]}
-                              alt={listing.data.name}
-                              className=" h-auto w-auto rounded-md"
-                            />
-                          </Link>
-                          <p className="absolute bottom-4 left-4 rounded-lg bg-zinc-900  p-1 text-sm uppercase text-zinc-50">
-                            {listing.data.type}
-                          </p>
-                          <button
-                            onClick={() => {
-                              onDelete(listing.id);
-                            }}
-                            className="absolute bottom-4 right-4 mt-4  rounded-md bg-red-500 p-1 text-zinc-50 transition duration-200 ease-in-out  hover:-translate-y-1 hover:drop-shadow-md"
-                          >
-                            Delete Listing
-                          </button>
-                        </div>
+                    <div
+                      key={listing.id}
+                      className="relative mx-0 flex h-[100%] flex-col rounded-md ring-1 ring-zinc-200 transition duration-200 ease-in-out hover:-translate-y-[2px] hover:shadow-lg"
+                    >
+                      <div className="relative">
                         <Link
-                          key={listing.id}
                           to={`/category/${listing.data.type}/${listing.id}`}
                         >
-                          <div className="p-4">
-                            <h3 className=" font-medium">
-                              {listing.data.name}
-                            </h3>
-                            <p>{listing.data.location}</p>
-                            <p className="w-fit rounded-lg text-sm uppercase text-green-500">
-                              ${listing.data.price}
-                              {listing.data.type === "rent" && "/Month"}
-                            </p>
-                            <div className="flex space-x-4">
-                              <div className="mt-2 flex items-center">
-                                <p className="text-sm">
-                                  {listing.data.bedrooms}
-                                </p>
-                                <FaBed className="ml-1" />
-                              </div>
-                              <div className="mt-2 flex items-center">
-                                <p className="text-sm">
-                                  {listing.data.bathrooms}
-                                </p>
-                                <FaBath className="ml-1 text-sm" />
-                              </div>
-                              <div className="mt-2 flex items-center">
-                                <p>
-                                  {listing.data.wifi === true ? (
-                                    <>
-                                      <FaWifi />
-                                    </>
-                                  ) : (
-                                    <>
-                                      <FaWifi className="text-zinc-900 opacity-25" />
-                                    </>
-                                  )}
-                                </p>
-                              </div>
-                              <div className="mt-2 flex items-center">
-                                <p>
-                                  {listing.data.furnished === true ? (
-                                    <>
-                                      <FaChair className="text-sm" />
-                                    </>
-                                  ) : (
-                                    <>
-                                      <FaChair className="text-zinc-900 opacity-25" />
-                                    </>
-                                  )}
-                                </p>
-                              </div>
-                              <div className="mt-2 flex items-center">
-                                <p>
-                                  {listing.data.parking === true ? (
-                                    <>
-                                      <FaParking className="text-sm" />
-                                    </>
-                                  ) : (
-                                    <>
-                                      <FaParking className="text-zinc-900 opacity-25" />
-                                    </>
-                                  )}
-                                </p>
-                              </div>
+                          <img
+                            src={listing.data.imgUrls[0]}
+                            alt={listing.data.name}
+                            className=" h-auto w-auto rounded-md"
+                          />
+                        </Link>
+                        <p className="absolute bottom-4 left-4 rounded-lg bg-zinc-900  p-1 text-sm uppercase text-zinc-50">
+                          {listing.data.type}
+                        </p>
+                        <button
+                          onClick={() => {
+                            onDelete(listing.id);
+                          }}
+                          className="absolute bottom-4 right-4 mt-4  rounded-md bg-red-500 p-1 text-zinc-50 transition duration-200 ease-in-out  hover:-translate-y-1 hover:drop-shadow-md"
+                        >
+                          Delete Listing
+                        </button>
+                      </div>
+                      <Link
+                        key={listing.id}
+                        to={`/category/${listing.data.type}/${listing.id}`}
+                      >
+                        <div className="p-4">
+                          <h3 className=" font-medium">{listing.data.name}</h3>
+                          <p>{listing.data.location}</p>
+                          <p className="w-fit rounded-lg text-sm uppercase text-green-500">
+                            ${listing.data.price}
+                            {listing.data.type === "rent" && "/Month"}
+                          </p>
+                          <div className="flex space-x-4">
+                            <div className="mt-2 flex items-center">
+                              <p className="text-sm">{listing.data.bedrooms}</p>
+                              <FaBed className="ml-1" />
+                            </div>
+                            <div className="mt-2 flex items-center">
+                              <p className="text-sm">
+                                {listing.data.bathrooms}
+                              </p>
+                              <FaBath className="ml-1 text-sm" />
+                            </div>
+                            <div className="mt-2 flex items-center">
+                              <p>
+                                {listing.data.wifi === true ? (
+                                  <>
+                                    <FaWifi />
+                                  </>
+                                ) : (
+                                  <>
+                                    <FaWifi className="text-zinc-900 opacity-25" />
+                                  </>
+                                )}
+                              </p>
+                            </div>
+                            <div className="mt-2 flex items-center">
+                              <p>
+                                {listing.data.furnished === true ? (
+                                  <>
+                                    <FaChair className="text-sm" />
+                                  </>
+                                ) : (
+                                  <>
+                                    <FaChair className="text-zinc-900 opacity-25" />
+                                  </>
+                                )}
+                              </p>
+                            </div>
+                            <div className="mt-2 flex items-center">
+                              <p>
+                                {listing.data.parking === true ? (
+                                  <>
+                                    <FaParking className="text-sm" />
+                                  </>
+                                ) : (
+                                  <>
+                                    <FaParking className="text-zinc-900 opacity-25" />
+                                  </>
+                                )}
+                              </p>
                             </div>
                           </div>
-                        </Link>
-                      </div>
-                    </>
+                        </div>
+                      </Link>
+                    </div>
                   );
                 })}
               </>
