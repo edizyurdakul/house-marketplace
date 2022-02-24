@@ -1,13 +1,6 @@
-import {
-  Hero,
-  FeaturedHouses,
-  HowItWorks,
-  ForRent,
-  CallToAction,
-} from "../components/Sections";
+import { Hero, HowItWorks, CallToAction } from "../components/Sections";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import {
   collection,
   getDocs,
@@ -15,7 +8,6 @@ import {
   where,
   orderBy,
   limit,
-  startAfter,
 } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";

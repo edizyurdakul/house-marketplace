@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { useAuthStatus } from "../../hooks/useAuthStatus";
 
 function Navbar() {
-  const { loggedIn, checkingStatus } = useAuthStatus();
-
   // loggedIn ? <Outlet /> : <Navigate to="/signin" />;
   return (
     <>

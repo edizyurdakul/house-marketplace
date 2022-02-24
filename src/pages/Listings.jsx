@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import {
   collection,
   getDocs,
@@ -7,7 +6,6 @@ import {
   where,
   orderBy,
   limit,
-  startAfter,
 } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";
