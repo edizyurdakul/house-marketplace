@@ -1,4 +1,4 @@
-# Github Scout
+# NewHome - House Marketplace
 
 ## How I worked on this project
 
