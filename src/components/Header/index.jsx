@@ -1,10 +1,8 @@
 import { Menu, Transition } from "@headlessui/react";
 import { HiOutlineMenu } from "react-icons/hi";
 import { Link } from "react-router-dom";
-import { useAuthStatus } from "../../hooks/useAuthStatus";
 
 function Navbar() {
-  // loggedIn ? <Outlet /> : <Navigate to="/signin" />;
   return (
     <>
       <a
