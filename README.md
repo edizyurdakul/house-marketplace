@@ -6,14 +6,13 @@ My goal was to use firebase as a database and authentication to learn more about
 
 ## How to navigate this project
 
-- Somewhat complex stateful logic: [Link to example code on GitHub]
 - Styling with Tailwind CSS, simple utility based CSS framework with HeadlessUI for UI component from the same developers of Tailwind CSS
 - The application fetches data from the Firebase: Examples for the request [https://github.com/edizyurdakul/newhome/blob/main/src/pages/Home.jsx](https://github.com/edizyurdakul/newhome/blob/main/src/pages/Home.jsx)
 
 ## Why I built the project this way
 
 - Tailwind is a great utility based css library, and Headless UI for fast component development.
-- My main goal is to become a front end developer.  That's why I decided to use firebase rather to create a custom backend server with database, firebase allows easier integration with databases and authentication.
+- My main goal is to become a front end developer. That's why I decided to use firebase rather to create a custom backend server with database, firebase allows easier integration with databases and authentication.
 
 ## If I had more time I would change this
 
